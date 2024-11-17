@@ -4,7 +4,7 @@
 <head>
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta http-equiv="refresh" content="10"> <!--刷新时间间隔(秒) -->
+    <!-- <meta http-equiv="refresh" content="10"> 刷新时间间隔(秒) -->
     <title>BUGPWN 2024</title>
     <link href="bootstrap.min.css" rel="stylesheet" />
     <style>
@@ -20,13 +20,8 @@
             -ms-background-size: cover;
             color: white;
             font-family: sans-serif, Arial, Helvetica;
-        }
-
-        .title {
-            margin: 130px;
-            text-align: center;
-            font-size: 36pt;
-            font-weight: bold;
+            margin-top: 300px;
+            margin: 240px 0px auto 0px;
         }
 
         .sub_title {
@@ -40,157 +35,281 @@
             background-color: #193b72;
             opacity: 0.7;
             border-radius: 25px;
-            margin: 20px 10px 20px 10px;
+            margin: 0px 0px 20px 0px;
             padding: 40px;
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            text-align: center;
+        }
+
+        tr {
+            line-height: 50px;
+        }
+
+        th.score {
+            min-width: 80px;
+        }
+
+        .roomB {
+            color: #ffff00;
+        }
+
+        .roomC {
+            color: #00ff00;
+        }
+
+        .roomD {
+            color: #a4cef5;
+        }
+
+        .rank-row {
+            line-height: 36px;
+            font-size: 12pt;
+            font-weight: bold;
         }
 
         .team_name {
             text-align: left;
-            font-size: 20pt;
-            font-weight: 400;
-            line-height: 60px;
         }
 
         .team_score {
             text-align: right;
-            font-size: 20pt;
-            font-weight: bold;
         }
 
         .time {
-            padding-top: 10px;
+            font-size: 30pt;
             text-align: left;
         }
     </style>
 </head>
 
 <body>
-    <script>
-
-    </script>
-    <div class="container text-center">
+    <div class="container-xxl text-center">
         <div class="row">
-            <div class="col title">
+            <div class="col col-lg-9">
+                <div class="panel">
+                    <div class="row">
+                        <div class="col col-12-lg">
+                            <div class="sub_title">Team standings</div>
+                        </div>
+                    </div>
+                    <table class="table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>参赛团队</th>
+                                <th colspan="3">单项得分汇总</th>
+                                <th>技术打分</th>
+                                <th colspan="4">专家打分</th>
+                            </tr>
+                            <tr>
+                                <th>Name</th>
+                                <th class="score roomB">Room B</th>
+                                <th class="score roomC">Room C</th>
+                                <th class="score roomD">Room D</th>
+                                <th class="score">Room B/C/D</th>
+                                <th class="score">Chris</th>
+                                <th class="score">YA</th>
+                                <th class="score">KU</th>
+                                <th class="score">Jeff</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Team1</td>
+                                <td class="roomB"></td>
+                                <td class="roomC"></td>
+                                <td class="roomD"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Team2</td>
+                                <td class="roomB"></td>
+                                <td class="roomC"></td>
+                                <td class="roomD"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Team3</td>
+                                <td class="roomB"></td>
+                                <td class="roomC"></td>
+                                <td class="roomD"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Team4</td>
+                                <td class="roomB"></td>
+                                <td class="roomC"></td>
+                                <td class="roomD"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Team5</td>
+                                <td class="roomB"></td>
+                                <td class="roomC"></td>
+                                <td class="roomD"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col col-lg-6 panel">
+            <div class="col col-lg-3">
                 <div class="row">
-                    <div class="sub_title">Team standings</div>
-                </div>
-                <div class="left-group"></div>
-            </div>
-            <div class="col col-lg-5">
-                <div class="row panel">
-                    <div class="sub_title">Top 3</div>
-                    <div class="col col-lg-12 right-group"></div>
-                </div>
-                <div class="row panel">
-                    <div class="sub_title">Time Remaining</div>
-                    <div class="row">
-                        <div class="col col-lg-12 pb">
+                    <div class="col col-lg-12">
+                        <div class="panel rank">
+                            <div class="sub_title">Rank</div>
+                            <div class="row rank-row">
+                                <div class="col col-lg-9 team_name"></div>
+                                <div class="col col-lg-3 team_score"></div>
+                            </div>
+                            <div class="row rank-row">
+                                <div class="col col-lg-9 team_name"></div>
+                                <div class="col col-lg-3 team_score"></div>
+                            </div>
+                            <div class="row rank-row">
+                                <div class="col col-lg-9 team_name"></div>
+                                <div class="col col-lg-3 team_score"></div>
+                            </div>
+                            <div class="row rank-row">
+                                <div class="col col-lg-9 team_name"></div>
+                                <div class="col col-lg-3 team_score"></div>
+                            </div>
+                            <div class="row rank-row">
+                                <div class="col col-lg-9 team_name"></div>
+                                <div class="col col-lg-3 team_score"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col col-lg-12 time">
-
+                </div>
+                <div class="row">
+                    <div class="col col-lg-12">
+                        <div class="panel">
+                            <div class="row">Time Remaining</div>
+                            <div class="row time"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <script src="jquery.min.js"></script>
-    <script src="data.js"></script>
     <script>
-        $(document).ready(function () {
+        function print_score($tr, team) {
+            var $tds = $tr.find('td');
+            $tds.eq(0).html(team.name);
+            team.total = 0;
+
+            // room score
+            for (var index = 0; index < 3; index++) {
+                var room_score = team.score.tech[index] + team.score.Chris[index] + team.score.YA[index] + team.score.KU[index] + team.score.Jeff[index];
+                team.total += room_score
+                $tds.eq(index + 1).html(room_score);
+            }
+
+            $tds.eq(4).html('<span class="roomB">' + team.score.tech[0] + '</span>/<span class="roomC">' + team.score.tech[1] + '</span>/<span class="roomD">' + team.score.tech[2]);
+            $tds.eq(5).html('<span class="roomB">' + team.score.Chris[0] + '</span>/<span class="roomC">' + team.score.Chris[1] + '</span>/<span class="roomD">' + team.score.Chris[2]);
+            $tds.eq(6).html('<span class="roomB">' + team.score.YA[0] + '</span>/<span class="roomC">' + team.score.YA[1] + '</span>/<span class="roomD">' + team.score.YA[2]);
+            $tds.eq(7).html('<span class="roomB">' + team.score.KU[0] + '</span>/<span class="roomC">' + team.score.KU[1] + '</span>/<span class="roomD">' + team.score.KU[2]);
+            $tds.eq(8).html('<span class="roomB">' + team.score.Jeff[0] + '</span>/<span class="roomC">' + team.score.Jeff[1] + '</span>/<span class="roomD">' + team.score.Jeff[2]);
+        }
+
+        function print_rank(index, $row, team) {
+            var $cols = $row.find('div.col');
+            $cols.eq(0).html(index + ". " + team.name);
+            $cols.eq(1).html(team.total);
+        }
+
+        function callback(data) {
             var buffer = [];
             for (var index = 0; index < data.teams.length; index++) {
-                buffer.push([
-                    '<div class="row">',
-                    '<div class="col col-lg-8"><div class="team_name text-left">', index + 1, ". ", data.teams[index].name, '</div></div>',
-                    '<div class="col col-lg-4"><div class="team_score text-right">', data.teams[index].score, '</div></div>',
-                    '</div>'
-                ].join(''));
+                print_score($('tbody tr').eq(index), data.teams[index]);
             }
-
-            $('.left-group').html(buffer.join(''));
 
             data.teams.sort(function (a, b) {
-                return b.score - a.score;
+                return b.total - a.total;
             })
 
-            buffer = [];
-            var max = data.teams.length > 3 ? 3 : data.teams.length;
-            for (var index = 0; index < max; index++) {
-                buffer.push([
-                    '<div class="row">',
-                    '<div class="col col-lg-8"><div class="team_name text-left">', index + 1, ". ", data.teams[index].name, '</div></div>',
-                    '<div class="col col-lg-4"><div class="team_score text-right">', data.teams[index].score, '</div></div>',
-                    '</div>'
-                ].join(''));
+            for (var index = 0; index < data.teams.length; index++) {
+                print_rank(index + 1, $('div.rank div.row').eq(index), data.teams[index]);
             }
-
-            $('.right-group').html(buffer.join(''));
 
             var start_time = new Date(data.start_time.replace(/-/g, "/"));
             var end_time = new Date(data.end_time.replace(/-/g, "/"));
-            var start_to_end = end_time.getTime() - start_time.getTime();
+            var now = new Date();
 
-            var show_time = function () {
-                var now = new Date();
-
-                if (now.getTime() < start_time.getTime()) {
-                    $('.pb').html('');
-                    $('.time').text('Not Started');
-                    return;
-                }
-
-                if (end_time.getTime() < now.getTime()) {
-                    $('.pb').html('');
-                    $('.time').text('Ended');
-                    return;
-                }
-
-                var diff = now.getTime() - start_time.getTime();
-                var percent = diff * 100 / start_to_end;
-
-                $('.pb').html([
-                    '<div class="progress" role="progressbar">',
-                    '<div class="progress-bar bg-success" style="width: ', percent, '%"></div></div>',
-                ].join(''));
-
-                diff = end_time.getTime() - now.getTime();
-                buffer = [];
-                if (diff > 24 * 60 * 60 * 1000) {
-                    var day = Math.floor(diff / (24 * 60 * 60 * 1000))
-                    buffer.push(day + 'd');
-                    diff -= day * 24 * 60 * 60 * 1000;
-                }
-
-                if (diff > 60 * 60 * 1000) {
-                    var hour = Math.floor(diff / (60 * 60 * 1000))
-                    buffer.push(hour + 'h');
-                    diff -= hour * 60 * 60 * 1000;
-                } else if (buffer.length > 0) {
-                    buffer.push('0h');
-                }
-
-                if (diff > 60 * 1000) {
-                    var minute = Math.floor(diff / (60 * 1000))
-                    buffer.push(minute + 'm');
-                    diff -= minute * 60 * 1000;
-                } else if (buffer.length > 0) {
-                    buffer.push('0m');
-                }
-
-                buffer.push(Math.floor(diff / 1000) + 's');
-                $('.time').html(buffer.join(''));
+            if (now.getTime() < start_time.getTime()) {
+                $('.time').text('Not Started');
+                return;
             }
 
-            show_time();
-            setInterval(show_time, 1000);
+            if (end_time.getTime() < now.getTime()) {
+                $('.time').text('Ended');
+                return;
+            }
+
+            var diff = end_time.getTime() - now.getTime();
+            buffer = [];
+            if (diff > 24 * 60 * 60 * 1000) {
+                var day = Math.floor(diff / (24 * 60 * 60 * 1000))
+                buffer.push(day + 'd ');
+                diff -= day * 24 * 60 * 60 * 1000;
+            }
+
+            var hour = Math.floor(diff / (60 * 60 * 1000))
+            buffer.push(hour < 10 ? '0' + hour : hour);
+            diff -= hour * 60 * 60 * 1000;
+
+
+            var minute = Math.floor(diff / (60 * 1000))
+            buffer.push(minute < 10 ? ':0' + minute : ':' + minute);
+            diff -= minute * 60 * 1000;
+
+
+            var second = Math.floor(diff / 1000);
+            buffer.push(second < 10 ? ':0' + second : ':' + second);
+            $('.time').html(buffer.join(''));
+        }
+
+        $(document).ready(function () {
+            setInterval(function () {
+                $.ajax({
+                    'cache': false,
+                    'dataType': "jsonp",
+                    "async": true,
+                    "crossDomain": true,
+                    "url": "data.js",
+                    "method": "GET",
+                    "headers": {
+                        "accept": "application/json",
+                        "Access-Control-Allow-Origin": "*"
+                    }
+                }).done(function (response) {
+                    console.log('DDDD');
+                });
+            }, 1000)
         });
     </script>
 </body>
