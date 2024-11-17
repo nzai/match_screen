@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charSet="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta http-equiv="refresh" content="10"> <!--刷新时间间隔(秒) -->
+    <title>BUGPWN 2024</title>
+    <link href="bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-image: url(bg.png);
+            background-position: center 0;
+            background-repeat: no-repeat;
+            /* background-attachment: fixed; */
+            background-size: cover;
+            -webkit-background-size: cover;
+            -o-background-size: cover;
+            -moz-background-size: cover;
+            -ms-background-size: cover;
+            color: white;
+            font-family: sans-serif, Arial, Helvetica;
+        }
+
+        .title {
+            margin: 130px;
+            text-align: center;
+            font-size: 36pt;
+            font-weight: bold;
+        }
+
+        .sub_title {
+            text-align: left;
+            font-size: 24pt;
+            font-weight: bold;
+            padding-bottom: 20px;
+        }
+
+        .panel {
+            background-color: #193b72;
+            opacity: 0.7;
+            border-radius: 25px;
+            margin: 20px 10px 20px 10px;
+            padding: 40px;
+        }
+
+        .team_name {
+            text-align: left;
+            font-size: 20pt;
+            font-weight: 400;
+            line-height: 60px;
+        }
+
+        .team_score {
+            text-align: right;
+            font-size: 20pt;
+            font-weight: bold;
+        }
+
+        .time {
+            padding-top: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+
+    </script>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col title">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-lg-6 panel">
+                <div class="row">
+                    <div class="sub_title">Team standings</div>
+                </div>
+                <div class="left-group"></div>
+            </div>
+            <div class="col col-lg-5">
+                <div class="row panel">
+                    <div class="sub_title">Top 3</div>
+                    <div class="col col-lg-12 right-group"></div>
+                </div>
+                <div class="row panel">
+                    <div class="sub_title">Time Remaining</div>
+                    <div class="row">
+                        <div class="col col-lg-12 pb">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-lg-12 time">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script src="data.js"></script>
+    <script>
+        $(document).ready(function () {
+            var buffer = [];
+            for (var index = 0; index < data.teams.length; index++) {
+                buffer.push([
+                    '<div class="row">',
+                    '<div class="col col-lg-8"><div class="team_name text-left">', index + 1, ". ", data.teams[index].name, '</div></div>',
+                    '<div class="col col-lg-4"><div class="team_score text-right">', data.teams[index].score, '</div></div>',
+                    '</div>'
+                ].join(''));
+            }
+
+            $('.left-group').html(buffer.join(''));
+
+            data.teams.sort(function (a, b) {
+                return b.score - a.score;
+            })
+
+            buffer = [];
+            var max = data.teams.length > 3 ? 3 : data.teams.length;
+            for (var index = 0; index < max; index++) {
+                buffer.push([
+                    '<div class="row">',
+                    '<div class="col col-lg-8"><div class="team_name text-left">', index + 1, ". ", data.teams[index].name, '</div></div>',
+                    '<div class="col col-lg-4"><div class="team_score text-right">', data.teams[index].score, '</div></div>',
+                    '</div>'
+                ].join(''));
+            }
+
+            $('.right-group').html(buffer.join(''));
+
+            var start_time = new Date(data.start_time.replace(/-/g, "/"));
+            var end_time = new Date(data.end_time.replace(/-/g, "/"));
+            var start_to_end = end_time.getTime() - start_time.getTime();
+
+            var show_time = function () {
+                var now = new Date();
+
+                if (now.getTime() < start_time.getTime()) {
+                    $('.pb').html('');
+                    $('.time').text('Not Started');
+                    return;
+                }
+
+                if (end_time.getTime() < now.getTime()) {
+                    $('.pb').html('');
+                    $('.time').text('Ended');
+                    return;
+                }
+
+                var diff = now.getTime() - start_time.getTime();
+                var percent = diff * 100 / start_to_end;
+
+                $('.pb').html([
+                    '<div class="progress" role="progressbar">',
+                    '<div class="progress-bar bg-success" style="width: ', percent, '%"></div></div>',
+                ].join(''));
+
+                diff = end_time.getTime() - now.getTime();
+                buffer = [];
+                if (diff > 24 * 60 * 60 * 1000) {
+                    var day = Math.floor(diff / (24 * 60 * 60 * 1000))
+                    buffer.push(day + 'd');
+                    diff -= day * 24 * 60 * 60 * 1000;
+                }
+
+                if (diff > 60 * 60 * 1000) {
+                    var hour = Math.floor(diff / (60 * 60 * 1000))
+                    buffer.push(hour + 'h');
+                    diff -= hour * 60 * 60 * 1000;
+                } else if (buffer.length > 0) {
+                    buffer.push('0h');
+                }
+
+                if (diff > 60 * 1000) {
+                    var minute = Math.floor(diff / (60 * 1000))
+                    buffer.push(minute + 'm');
+                    diff -= minute * 60 * 1000;
+                } else if (buffer.length > 0) {
+                    buffer.push('0m');
+                }
+
+                buffer.push(Math.floor(diff / 1000) + 's');
+                $('.time').html(buffer.join(''));
+            }
+
+            show_time();
+            setInterval(show_time, 1000);
+        });
+    </script>
+</body>
+
+</html>
